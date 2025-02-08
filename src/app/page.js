@@ -83,7 +83,22 @@ export default function Home() {
     return (
       <>
         <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 z-50">
-          <div></div>
+          {/* Hidden audio element controlled by React */}
+          <audio ref={audioRef} src="/assets/music.mp3" loop />
+
+          {/* Music Control Button */}
+          <button
+            onClick={handlePlayPause}
+            className="absolute top-4 right-4 px-4 py-2  text-black rounded-full shadow-md hover:bg-gray"
+          >
+            {isPlaying ?
+              <Image src="/mute.svg" alt="Example Icon" width={32} height={32} /> :
+              <Image src="/unmute.svg" alt="Example Icon" width={24} height={24} />
+            }
+            {/* <Image src="/mute.svg" alt="Example Icon" width={32} height={32} /> 
+  <Image src="/unmute.svg" alt="Example Icon" width={24} height={24} /> */}
+
+          </button>
           <FallingHearts />
           <div className=" z-[60] bg-white/20 backdrop-blur-lg  border-opacity-30 m-5 p-6 rounded-2xl shadow-xl border border-white text-center">
             <h1 className="text-3xl font-bold mb-4 text-pink-700">
@@ -104,22 +119,7 @@ export default function Home() {
   // Main screen with the cute GIF and buttons.
   return (
     <div className="relative min-h-[100dvh] flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4 overflow-hidden">
-      {/* Hidden audio element controlled by React */}
-      <audio ref={audioRef} src="/assets/music.mp3" loop />
 
-      {/* Music Control Button */}
-      <button
-        onClick={handlePlayPause}
-        className="absolute top-4 right-4 px-4 py-2  text-black rounded-full shadow-md hover:bg-gray"
-      >
-        {isPlaying ?
-          <Image src="/mute.svg" alt="Example Icon" width={32} height={32} /> :
-          <Image src="/unmute.svg" alt="Example Icon" width={24} height={24} />
-        }
-        {/* <Image src="/mute.svg" alt="Example Icon" width={32} height={32} /> 
-        <Image src="/unmute.svg" alt="Example Icon" width={24} height={24} /> */}
-
-      </button>
 
 
       {/* Animated Balls Background */}
