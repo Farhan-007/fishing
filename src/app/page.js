@@ -1,6 +1,7 @@
 "use client"
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import FallingHearts from './fallingHearts'
+import Image from 'next/image'
 
 
 // Array of cute GIF URLs for the main card.
@@ -41,6 +42,21 @@ export default function Home() {
     setCurrentGif(randomGif)
   }
 
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  // Toggle play/pause state of the audio.
+  const handlePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   // Handler for when the Yes button is pressed.
   const handleYesClick = () => {
     changeGif()
@@ -69,7 +85,7 @@ export default function Home() {
         <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 z-50">
           <div></div>
           <FallingHearts />
-          <div className= " z-[60] bg-white/20 backdrop-blur-lg  border-opacity-30 m-5 p-6 rounded-2xl shadow-xl border border-white text-center">
+          <div className=" z-[60] bg-white/20 backdrop-blur-lg  border-opacity-30 m-5 p-6 rounded-2xl shadow-xl border border-white text-center">
             <h1 className="text-3xl font-bold mb-4 text-pink-700">
               Yay! pta tha tum maan jaogi! 💐
               <p>kawaii 🥰</p>
@@ -88,6 +104,24 @@ export default function Home() {
   // Main screen with the cute GIF and buttons.
   return (
     <div className="relative min-h-[100dvh] flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4 overflow-hidden">
+      {/* Hidden audio element controlled by React */}
+      <audio ref={audioRef} src="/assets/music.mp3" loop />
+
+      {/* Music Control Button */}
+      <button
+        onClick={handlePlayPause}
+        className="absolute top-4 right-4 px-4 py-2  text-black rounded-full shadow-md hover:bg-gray"
+      >
+        {isPlaying ?
+          <Image src="/mute.svg" alt="Example Icon" width={32} height={32} /> :
+          <Image src="/unmute.svg" alt="Example Icon" width={24} height={24} />
+        }
+        {/* <Image src="/mute.svg" alt="Example Icon" width={32} height={32} /> 
+        <Image src="/unmute.svg" alt="Example Icon" width={24} height={24} /> */}
+
+      </button>
+
+
       {/* Animated Balls Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="ball ball-1" />
