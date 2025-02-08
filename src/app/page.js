@@ -66,12 +66,13 @@ export default function Home() {
   if (accepted) {
     return (
       <>
-        <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 z-50">
-        <div></div>
-        <FallingHearts />
-          <div className="bg-pink-100 m-5 p-8 rounded-2xl shadow-xl border-4 border-pink-300 text-center">
+        <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 z-50">
+          <div></div>
+          <FallingHearts />
+          <div className= " z-[60] bg-white/20 backdrop-blur-lg  border-opacity-30 m-5 p-6 rounded-2xl shadow-xl border border-white text-center">
             <h1 className="text-3xl font-bold mb-4 text-pink-700">
               Yay! pta tha tum maan jaogi! 💐
+              <p>kawaii 🥰</p>
             </h1>
             <img
               src={excitedGif}
@@ -86,8 +87,24 @@ export default function Home() {
 
   // Main screen with the cute GIF and buttons.
   return (
-    <div className={"min-h-[100dvh] flex flex-col items-center justify-center bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4"}>
-      <div className={accepted? "hidden" : "bg-white m-5 p-6 rounded-2xl shadow-xl flex flex-col items-center space-y-4"}>
+    <div className="relative min-h-[100dvh] flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4 overflow-hidden">
+      {/* Animated Balls Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="ball ball-1" />
+        <div className="ball ball-2" />
+        <div className="ball ball-3" />
+        <div className="ball ball-4" />
+        <div className="ball ball-5" />
+      </div>
+
+      {/* Glass Card */}
+      <div
+        className={
+          accepted
+            ? "hidden"
+            : "relative z-10 bg-white/20 backdrop-blur-lg border border-white border-opacity-30 m-5 p-6 rounded-2xl shadow-2xl flex flex-col items-center space-y-4"
+        }
+      >
         <h1 className="text-2xl font-bold text-pink-600 text-center">
           movie chalogi mere saath? 🎬
         </h1>
@@ -113,6 +130,64 @@ export default function Home() {
           </button>
         </div>
       </div>
+
+      {/* Custom CSS for the balls background */}
+      <style jsx>{`
+    .ball {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+    .ball-1 {
+      width: 50px;
+      height: 50px;
+      top: 10%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+    .ball-2 {
+      width: 80px;
+      height: 80px;
+      top: 50%;
+      left: 70%;
+      animation-delay: 1s;
+    }
+    .ball-3 {
+      width: 40px;
+      height: 40px;
+      top: 80%;
+      left: 30%;
+      animation-delay: 2s;
+    }
+    .ball-4 {
+      width: 60px;
+      height: 60px;
+      top: 30%;
+      left: 80%;
+      animation-delay: 3s;
+    }
+    .ball-5 {
+      width: 100px;
+      height: 100px;
+      top: 60%;
+      left: 10%;
+      animation-delay: 4s;
+    }
+    @keyframes float {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(20px, -20px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+  `}</style>
     </div>
+
+
   )
 }
