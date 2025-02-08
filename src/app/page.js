@@ -84,7 +84,7 @@ export default function Home() {
       <>
         <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 z-50">
           {/* Hidden audio element controlled by React */}
-          <audio ref={audioRef} src="/assets/music.mp3" loop />
+          <audio ref={audioRef} src="/assets/music.mp3" loop autoPlay />
 
           {/* Music Control Button */}
           <button
